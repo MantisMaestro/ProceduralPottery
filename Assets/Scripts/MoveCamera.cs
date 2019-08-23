@@ -31,6 +31,6 @@ public class MoveCamera : MonoBehaviour
             transform.Translate(Vector3.right * movementSpeed);
         }
 
-        camTransform.LookAt(Vector3.zero);
+        camTransform.LookAt(new Vector3(0f, transform.position.y, 0f));
     }
 }
