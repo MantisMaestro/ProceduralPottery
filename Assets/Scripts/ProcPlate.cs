@@ -4,32 +4,41 @@ using UnityEngine;
 
 public static class ProcPlate
 {
-    public static Mesh GeneratePlate(PlateParams plateParams)
+    public struct PlateParams
+    {
+        public float radius;
+        public float baseRadius;
+        public float depth;
+        public float thickness;
+        public int segmentCount;
+    }
+
+    public static Mesh GeneratePlate(float radius, float baseRadius, float depth, float thickness, int segmentCount)
     {
         Mesh mesh = new Mesh();
-        mesh.name = "Plate";
         mesh.Clear();
+        mesh.name = "Plate";
 
         List<Vector3> vertices = new List<Vector3>();
 
-        for (int i = 0; i < plateParams.segmentCount; i++)
+        for (int i = 0; i < segmentCount; i++)
         {
-            float t = i / (float)plateParams.segmentCount;
+            float t = i / (float)segmentCount;
             float angle = t * MathUtils.TAU;
 
             Vector2 dir2D = MathUtils.GetVectorByAngle(angle);
             Vector3 dir = new Vector3(dir2D.x, 0f, dir2D.y);
 
-            vertices.Add(dir * plateParams.baseRadius);
-            vertices.Add(dir * plateParams.radius + Vector3.up * plateParams.depth);
+            vertices.Add(dir * baseRadius);
+            vertices.Add(dir * radius + Vector3.up * depth);
 
-            vertices.Add(dir * plateParams.baseRadius + Vector3.up * plateParams.thickness);
-            vertices.Add(dir * plateParams.radius + Vector3.up * plateParams.thickness + Vector3.up * plateParams.depth);
+            vertices.Add(dir * baseRadius + Vector3.up * thickness);
+            vertices.Add(dir * radius + Vector3.up * thickness + Vector3.up * depth);
         }
 
         List<int> triangles = new List<int>();
 
-        for (int i = 1; i <= plateParams.segmentCount - 2; i++)
+        for (int i = 1; i <= segmentCount - 2; i++)
         {
             int bottomRoot = 0;
             int bottomP2 = (bottomRoot + 4 * i) % vertices.Count;
@@ -50,7 +59,7 @@ public static class ProcPlate
             triangles.Add(topP2);
         }
 
-        for (int i = 0; i < plateParams.segmentCount; i++)
+        for (int i = 0; i < segmentCount; i++)
         {
             int bottomInner = (i * 4) % vertices.Count;
             int bottomOuter = (i * 4 + 1) % vertices.Count;
@@ -92,13 +101,4 @@ public static class ProcPlate
         return mesh;
     }
 
-}
-
-public struct PlateParams
-{
-    public float radius;
-    public float baseRadius;
-    public float depth;
-    public float thickness;
-    public int segmentCount;
 }
