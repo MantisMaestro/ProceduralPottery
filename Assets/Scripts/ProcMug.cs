@@ -117,11 +117,30 @@ public static class ProcMug
 		{		
 			for (int l = 0; l < handleSegmentCount; l++)
 			{
-				int root = (k * handleSegmentCount + l) % handleVertexCount;
-				int rootAdj = (root + 1) % handleVertexCount + vertexRoot;
-				int rootNext = (root + handleSegmentCount) % handleVertexCount + vertexRoot;
-				int rootAdjNext = (root + handleSegmentCount + 1) % handleVertexCount + vertexRoot;
-				root += vertexRoot;
+				int root = 0;
+				int rootAdj = 0;
+				int rootNext = 0;
+				int rootAdjNext = 0;
+
+				if (l == 7)
+				{
+					root = (k * handleSegmentCount + l) % handleVertexCount;
+					rootAdj = (k * handleSegmentCount) % handleVertexCount + vertexRoot;
+					rootNext = (root + handleSegmentCount) % handleVertexCount + vertexRoot;
+					rootAdjNext = (k * handleSegmentCount + handleSegmentCount) % handleVertexCount + vertexRoot;
+					root += vertexRoot;
+				}
+				else
+				{
+					root = (k * handleSegmentCount + l) % handleVertexCount;
+					rootAdj = (root + 1) % handleVertexCount + vertexRoot;
+					rootNext = (root + handleSegmentCount) % handleVertexCount + vertexRoot;
+					rootAdjNext = (root + handleSegmentCount + 1) % handleVertexCount + vertexRoot;
+					root += vertexRoot;	
+				}
+
+				Debug.LogFormat("root {0}, rootAdj {1}, rootNext {2}, rootAdjNext {3}, handleVC {4}, vertexRoot {5}, totalVC {6}"
+						, root, rootAdj, rootNext, rootAdjNext, handleVertexCount, vertexRoot, vertices.Count);
 
 				triangles.Add(root);
 				triangles.Add(rootAdjNext);
