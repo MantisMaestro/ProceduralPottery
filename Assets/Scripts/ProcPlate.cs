@@ -44,8 +44,6 @@ public static class ProcPlate
             int bottomP2 = (bottomRoot + 4 * i) % vertices.Count;
             int bottomP3 = (bottomRoot + 4 * i + 4) % vertices.Count;
 
-            Debug.LogFormat("Drawing triangle {0} from vertices {1}, {2}, {3}", i, bottomRoot, bottomP2, bottomP3);
-
             int topRoot = 2;
             int topP2 = (topRoot + 4 * i) % vertices.Count;
             int topP3 = (topRoot + 4 * i + 4) % vertices.Count;

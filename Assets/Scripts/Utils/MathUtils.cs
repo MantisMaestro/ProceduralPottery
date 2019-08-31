@@ -13,4 +13,12 @@ public static class MathUtils
                 Mathf.Sin(angle)
             );
     }
+
+	public static Vector3 RotatePointAroundPivot(Vector3 pivot, Vector3 point, Vector3 angles)
+	{
+		Vector3 dir = pivot - point;
+		dir = Quaternion.Euler(angles) * dir;
+		point = dir + pivot;
+		return point;
+	}
 }

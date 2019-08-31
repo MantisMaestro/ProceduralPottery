@@ -33,7 +33,7 @@ public class PlateSpawner : MonoBehaviour
                 float baseRadius = Random.Range(1f, 3f);
                 float depth = Random.Range(0.25f, 2f);
                 float thickness = Random.Range(0.05f, 0.2f);
-                int segmentCount = Random.Range(3, 128);
+                int segmentCount = Random.Range(3, 64);
 
                 go.GetComponent<MeshFilter>().sharedMesh = ProcPlate.GeneratePlate(radius, baseRadius, depth, thickness, segmentCount);            
             }
@@ -43,9 +43,9 @@ public class PlateSpawner : MonoBehaviour
                 float radius = Random.Range(0.75f, 1.5f);
                 float height = Random.Range(2f, 4f);
                 float thickness = Random.Range(0.05f, 0.2f);
-                int segmentCount = Random.Range(3, 128);
+                int segmentCount = Random.Range(3, 32);
 
-                go.GetComponent<MeshFilter>().sharedMesh = ProcMug.GenerateMug(radius, thickness, height, segmentCount, 0);                
+                go.GetComponent<MeshFilter>().sharedMesh = ProcMug.GenerateMug(radius, thickness, height, segmentCount, 8);                
             }
 
             go.GetComponent<MeshCollider>().sharedMesh = go.GetComponent<MeshFilter>().sharedMesh;

@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 7937081049020487086}
   - component: {fileID: 5785570492865409668}
   - component: {fileID: -7263162805418903895}
+  - component: {fileID: 6736343322932666666}
   m_Layer: 0
-  m_Name: Plate
+  m_Name: Pottery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,3 +111,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
+--- !u!114 &6736343322932666666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7913392429882786279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9fcf46394d3e6449bff5674d04d6118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
